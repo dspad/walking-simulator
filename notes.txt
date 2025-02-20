@@ -1,3 +1,6 @@
+v8
+- gestisci accellerazione, decelerrazione e gestione player mentre si è in aria
+
 v7
 - corsa
 

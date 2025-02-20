@@ -55,8 +55,20 @@ func _physics_process(delta: float):
 		mov_dir *= run_dot
 		print(run_dot)
 	
-	velocity.x = mov_dir.x * target_speed
-	velocity.z = mov_dir.z * target_speed
+	#accellerazione se stiamo camminando normalmente
+	var current_smoothing = walk_accelleration
+	if not is_on_floor():
+		#accelerazione se stiamo in salto
+		current_smoothing = air_accelleration
+	elif not mov_dir:
+		#accelerazione se abbiamo rilsciato il tasto
+		current_smoothing = breaking
+	
+	#applica accelerazione/decelerazione
+	var target_vel = mov_dir * target_speed
+	
+	velocity.x = lerp(velocity.x, target_vel.x, current_smoothing * delta)
+	velocity.z = lerp(velocity.z, target_vel.z, current_smoothing * delta)
 	move_and_slide()
 	
 	#lettura movimento camera
@@ -68,6 +80,13 @@ func _physics_process(delta: float):
 	camera.rotation.x = clamp(camera.rotation.x,-1.5,1.5) #imposta limite (in radianti) della rotazione
 	
 	camera_look_input = Vector2.ZERO
+	
+	# Mostra mouse
+	if Input.is_action_just_pressed("ui_cancel"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseMotion:
