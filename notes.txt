@@ -1,0 +1,13 @@
+v2
+- creata 3D Scene (main.tscn)
+- creato StaticBody3D (Terrain)
+- importati i models del corso
+- trascinato Terrain.Obj nella scena e inserito come child di Terrain (Terrain2)
+- applicato material (TerrainMaterial.tres) sulla mesh
+- selezionato l'obj, cliccato sul menu in alto al centro "Mesh" -> Create Collision Shape e lasciato così com'è per creare una collision sull'oggetto
+- duplicato Terrain (e abbiamo Terrain3), lo abbiamo scalato, orientato diversamente per dare impressione di un paesaggio
+- Aggiunta DirectionalLight3D e abilitate ombre
+- Aggiunto nodo WorldEnvironment
+- Creazione cielo procedurale: nel menu a destra selezionare New Environment, scegliere poi Background -> Mode -> Sky. Nel menu sky, scegliere New Sky, Sky Material e scegliere ProceduralSkyMaterial
+- Creazione nebbia: selezionando sempre WorldEnvironment, abilitiamo Fog e modifichiamo il colore (Light Color)
+- aggiunti altri elementi nella scena (Tree.tscn,Rock.tscn. Erano già scene 3D scene di Godot)
