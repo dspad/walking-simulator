@@ -1,3 +1,8 @@
+v9
+- setup interaction system. Aggiunto nodo RayCast3D come figlio di Camera3D
+- creazione Label come figlio di RayCast3D
+- creazione script per oggetto interagibile e InteractionController
+
 v8
 - gestisci accellerazione, decelerrazione e gestione player mentre si è in aria
 
