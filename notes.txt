@@ -1,3 +1,6 @@
+v7
+- corsa
+
 v6
 - fix movimento laterale camera
 - implementazione salto

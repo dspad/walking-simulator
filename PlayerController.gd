@@ -38,12 +38,25 @@ func _physics_process(delta: float):
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = jump_force
 		
-	
 	# lettura input movimento
 	var move_input = Input.get_vector("move_left","move_right", "move_forward","move_back")
 	var mov_dir = (transform.basis * Vector3(move_input.x,0,move_input.y)).normalized()
-	velocity.x = mov_dir.x * max_speed
-	velocity.z = mov_dir.z * max_speed
+	
+	is_running = Input.is_action_pressed("sprint")
+	
+		#corsa
+	var target_speed = max_speed
+	if is_running:
+		#incrementa la velocità finale
+		target_speed = max_run_speed
+		#impedisce di correre di lato o indietro
+		var run_dot = -mov_dir.dot(transform.basis.z)
+		run_dot = clamp(run_dot,0.0,1.0)
+		mov_dir *= run_dot
+		print(run_dot)
+	
+	velocity.x = mov_dir.x * target_speed
+	velocity.z = mov_dir.z * target_speed
 	move_and_slide()
 	
 	#lettura movimento camera
