@@ -1,3 +1,9 @@
+v3
+- configurazione azioni per il player. Project -> Project Settings -> Input Map
+- creazione CharacterBody3D (Player), come figlio creiamo CollisionShape3D e, nel menu a destra, creiamo una Shape CapsuleShape3D e configuriamo le sue dimensioni assicurandoci che non penetri nel terreno
+- sempre come figlio di Player, aggiungiamo un Camera3D e mettiamola a livello degli occhi (1,5 m dal terreno). Nell'inspector della camera, mettiamo la spunta su Current On per rendere la camera abilitata di default
+
+
 v2
 - creata 3D Scene (main.tscn)
 - creato StaticBody3D (Terrain)
