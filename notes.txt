@@ -1,3 +1,6 @@
+v4
+- creazione script su Player (inspector in basso a destra)
+
 v3
 - configurazione azioni per il player. Project -> Project Settings -> Input Map
 - creazione CharacterBody3D (Player), come figlio creiamo CollisionShape3D e, nel menu a destra, creiamo una Shape CapsuleShape3D e configuriamo le sue dimensioni assicurandoci che non penetri nel terreno
