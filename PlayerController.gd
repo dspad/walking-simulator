@@ -4,7 +4,7 @@ extends CharacterBody3D
 #movement variables
 #crea menu a discesa nell'inspector per collezionare le variabili esposte
 @export_group("Movement")
-@export var max_speed : float = 4.0
+@export var max_speed : float = 4.0 #4m al secondo
 @export var walk_accelleration : float = 20.0
 @export var breaking : float = 20.0
 @export var air_accelleration : float = 4.0
@@ -26,10 +26,25 @@ var camera_look_input : Vector2
 
 
 func _ready():
-	pass
+	#
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float):
-	pass
+	# lettura input movimento
+	var move_input = Input.get_vector("move_left","move_right", "move_forward","move_back")
+	velocity = Vector3(move_input.x,0,move_input.y) * max_speed
+	move_and_slide()
+	
+	#lettura movimento camera
+	#per il movimento laterale dobbiamo ruotare tutto il character
+	rotate_y(-camera_look_input.x * look_sensivity)
+	
+	#per il movimento verticale, la rotazione è solo della camera
+	camera.rotate_x(-camera_look_input.y * look_sensivity)
+	camera.rotation.x = clamp(camera.rotation.x,-1.5,1.5) #imposta limite (in radianti) della rotazione
+	
+	camera_look_input = Vector2.ZERO
 	
 func _unhandled_input(event: InputEvent):
-	pass
+	if event is InputEventMouseMotion:
+		camera_look_input = event.relative

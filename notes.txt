@@ -1,3 +1,6 @@
+v5
+- gestione eventi input nello script (movimento e camera)
+
 v4
 - creazione script su Player (inspector in basso a destra)
 
